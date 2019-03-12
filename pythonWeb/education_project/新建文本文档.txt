@@ -1,0 +1,14 @@
+			<!--	<input name="commentName" id="" class="form-control" size="22" placeholder="ÄúµÄêÇ³Æ£¨±ØÌî£©" maxlength="15" autocomplete="off" tabindex="1" type="text" style="box-sizing: border-box;
+
+  font-size:1.4em;
+  height:1.5em;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  -web-kit-appearance:none;
+  -moz-appearance: none;
+  display:block;
+  outline:0;
+  padding:0 1em;
+  text-decoration:none;
+  width:100%;">-->

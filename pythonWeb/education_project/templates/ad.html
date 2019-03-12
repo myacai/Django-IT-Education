@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<div class="banner">
+      <div id="slide-holder">
+        <div id="slide-runner"> 
+        <a href="/article/?id=1" target="_blank">
+        <img id="slide-img-1" src="{% static 'images/a1.jpg' %}"  alt="" />
+        </a> 
+        <a href="/article/?id=2" target="_blank">
+        <img id="slide-img-2" src="{% static 'images/a2.jpg' %}"  alt="" />
+        </a> 
+        <a href="/article/?id=4" target="_blank">
+        <img id="slide-img-3" src="{% static 'images/a3.jpg' %}"  alt="" />
+        </a> 
+        <a href="/article/?id=3" target="_blank">
+        <img id="slide-img-4" src="{% static 'images/a4.jpg' %}"  alt="" />
+        </a>
+          <div id="slide-controls">
+            <p id="slide-client" class="text"><strong></strong><span></span></p>
+            <p id="slide-desc" class="text"></p>
+            <p id="slide-nav"></p>
+          </div>
+        </div>
+      </div>
+      <script>
+    if(!window.slider) {
+    var slider={};
+  }
+
+  slider.data= [
+    {
+        "id":"slide-img-1", // 与slide-runner中的img标签id对应
+        "client":"Python读写Excel表格",
+        "desc":"就是这么简单粗暴又好用" //这里修改描述
+    },
+    {
+        "id":"slide-img-2",
+        "client":"Spring 经典面试题和答案",
+        "desc":"Spring 经典面试题和答案"
+    },
+    {
+        "id":"slide-img-3",
+        "client":"Spring AOP中定义切点",
+        "desc":"pring AOP中定义切点（PointCut）和通知（Advice）"
+    },
+    {
+        "id":"slide-img-4",
+        "client":"DispatcherServlet详解",
+        "desc":"springMVC DispatcherServlet详解"
+    }
+  ];
+
+    </script>
+    </div>
+    <!-- banner代码 结束 -->
