@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block left_content %}
+    <div class="postdate">
+
+      <div class="date">{{ article.date_publish | date:'d' }}</div>
+    </div>
+    <div class="title">
+        <h2><a href="" rel="bookmark" title="{{ article.title }}">{{ article.title }}</a></h2>
+        <div class="postmeta">
+          <span class="postmeta_author">{{ article.user.username }}</span>
+          <span class="postmeta_category"><a href="" rel="category">{{ article.category.name }}</a></span>
+          <span class="postmeta_time">{{ article.date_publish | date:'Y-m-d' }}</span>
+        </div>
+    </div>
+        <div class="entry">
+          {{ article.content | safe }}
+        </div>
+        <span class="tags">
+            {% for tag in article.tag.all %}
+            <a href="?tag={{ tag.name }}" rel="tag">{{ tag.name }}</a>
+            {% endfor %}
+        </span>
+        <div class="info">
+        Address:  <a href="{{ SITE_URL }}article/?id={{ article.id }}" rel="bookmark" title="{{ article.title }}">{{ SITE_URL }}article/?id={{ article.id }}</a>
+        </div>
+
+      <div class="commentstitle"><h3 id="comments"><span class="commentsnumber">评论  1 comment</span></h3></div>
+
+      
+
+
+
+
+
+  <div id="respond">
+		<form id="comment-form" name="comment-form" action="/article/?id={{ id }}" method="POST">
+			<div class="comment">
+
+  <input name="commentId" value="{{ id }}" type="hidden">
+				<div class="comment-box">
+					<textarea placeholder="您的评论或留言（必填）" name="commentTextarea" id="comment-textarea" cols="100%" rows="10" tabindex="3" style="
+  font-size:1.4em;
+  height:2.7em;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  outline:0;
+  padding:0 1em;    
+
+  width:100%;"></textarea>
+					<div class="comment-ctrl">
+						<div class="comment-prompt" style="display: none;"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span> </div>
+						<div class="comment-success" style="display: none;"> <i class="fa fa-check"></i> <span class="comment-prompt-text">评论提交成功...</span> </div>
+						<button  style="width:200px;padding:8px;  
+						margin-left:250px;
+        background-color: #428bca;  
+        border-color: #357ebd;  
+        color: #fff;  
+        -moz-border-radius: 10px;  
+        -webkit-border-radius: 10px;  
+        border-radius: 10px; /* future proofing */  
+        -khtml-border-radius: 10px; /* for old Konqueror browsers */  
+        text-align: center;  
+        vertical-align: middle;  
+        border: 1px solid transparent;  
+        font-weight: 900;  font-size:125%" type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+  <div id="postcomments">
+	<ol id="comment_list" class="commentlist">  
+	
+	{% for comment in commentList %}
+        	<li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="" rel="nofollow" target="_blank" style="font-size:20px">{{ comment.username }}</a><span class="time" style="font-size:15px">({{ comment.date_publish }})</span><br><p style="font-size:29px">{{ comment.content }}</p></p></div></li>
+	
+   {% endfor %}      
+	 </div>
+
+
+    
+{% endblock %}
