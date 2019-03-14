@@ -1,2 +1,2 @@
-# hello-world
-hello-world，hello-world
+# Django IT教育博客系统
+
