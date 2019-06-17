@@ -14,4 +14,8 @@ urlpatterns = [
     re_path(r'userLead', userLead, name='userLead'),
     re_path(r'^login$', login, name='login'),
     re_path(r'^articleAdd$', articleAdd, name='articleAdd'),
+    re_path(r'^jingdong$', jingdong, name='jingdong'),
+    re_path(r'^ouwang$', ouwang, name='ouwang'),
+    re_path(r'^login12306$', login12306, name='login12306$'),
+    re_path(r'^douban$', douban, name='douban'),
 ]

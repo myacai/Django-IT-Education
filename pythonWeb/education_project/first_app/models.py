@@ -149,5 +149,73 @@ class CourseVideoList(models.Model):
     def __str__(self):
         return self.catalog
     
+class FirstAppWeixininfo(models.Model):
+    title = models.CharField(max_length=100)
+    date = models.CharField(max_length=50)
+    from_name = models.CharField(max_length=50)
+    read_num = models.CharField(max_length=20, blank=True, null=True)
+    like_num = models.CharField(max_length=20, blank=True, null=True)
+    articleurl = models.CharField(db_column='articleUrl', max_length=350, blank=True, null=True)  # Field name made lowercase.
+    shijianchuo = models.CharField(max_length=50)
+    digest = models.CharField(max_length=300, blank=True, null=True)
+    updete_time = models.CharField(max_length=50)
 
+    class Meta:
+        managed = False
+        db_table = 'first_app_weixininfo'
 
+class Jingdong(models.Model):
+    productid = models.CharField(db_column='productId', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    productname = models.CharField(db_column='productName', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    shopname = models.CharField(db_column='shopName', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    commentnums = models.CharField(db_column='commentNums', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    prices = models.CharField(max_length=20, blank=True, null=True)
+    links = models.CharField(max_length=255, blank=True, null=True)
+    imageUrl = models.CharField(max_length=255, blank=True, null=True)	
+
+    class Meta:
+        verbose_name = '京东信息'
+        verbose_name_plural = verbose_name
+        ordering = ['productname']
+
+    def __str__(self):
+        return self.productname
+
+class Ouwang(models.Model):
+    title = models.CharField(db_column='title', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    ctt =  models.CharField(db_column='content', max_length=10000,  verbose_name='文章内容')   # Field name made lowercase.
+    date = models.CharField(db_column='date', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    visitCount = models.CharField(db_column='visitCount', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    LinkUrl = models.CharField(db_column='LinkUrl', max_length=100, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        verbose_name = '瓯网信息'
+        verbose_name_plural = verbose_name
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+    
+class DoupanTop(models.Model):
+    no = models.CharField(db_column='no', max_length=100, blank=True, null=True)
+    movie_name = models.CharField(db_column='movie_name', max_length=100, blank=True, null=True)
+    director = models.CharField(db_column='director', max_length=1000, blank=True, null=True)
+    writer = models.CharField(db_column='writer', max_length=100, blank=True, null=True)
+    actor = models.CharField(db_column='actor', max_length=1000, blank=True, null=True)
+    typee = models.CharField(db_column='typee', max_length=100, blank=True, null=True)
+    region = models.CharField(db_column='region', max_length=1000, blank=True, null=True)
+    language = models.CharField(db_column='language', max_length=100, blank=True, null=True)
+    date = models.CharField(db_column='date', max_length=100, blank=True, null=True)
+    length = models.CharField(db_column='length', max_length=100, blank=True, null=True)
+    another_name = models.CharField(db_column='another_name', max_length=100, blank=True, null=True)
+    introduction = models.CharField(db_column='introduction', max_length=100, blank=True, null=True)
+    grade = models.CharField(db_column='grade', max_length=100, blank=True, null=True)
+    comment_times = models.CharField(db_column='comment_times', max_length=100, blank=True, null=True)
+    
+    class Meta:
+        verbose_name = '豆瓣'
+        verbose_name_plural = verbose_name
+        ordering = ['movie_name']
+
+    def __str__(self):
+        return self.movie_name

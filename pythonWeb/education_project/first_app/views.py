@@ -1,13 +1,108 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.conf import settings
-from .models import Article, Tag, CourseVideo, CourseVideoList, Course, CourseList,User,Comment,proUser,Category
-
+from .models import Article, Tag, CourseVideo, CourseVideoList, Course, CourseList,User,Comment,proUser,Category,Jingdong,Ouwang
+from .models import DoupanTop
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
 
+def login12306(request):
+    return render(request, 'login12306.html', locals())
+
+def douban(request):
+    jingdong_list = DoupanTop.objects.all()
+    totalNum = 0
+    for i in jingdong_list:
+        totalNum += 1
+    paginator = Paginator(jingdong_list, 25) # 每页显示25条
+
+    page = request.GET.get('page')
+    try:
+        jingdong_list = paginator.page(page)
+    except PageNotAnInteger:
+        # 如果请求的页数不是整数，返回第一页。
+        jingdong_list = paginator.page(1)
+    except EmptyPage:
+        # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
+        jingdong_list = paginator.page(paginator.num_pages)
+    return render(request, 'douban.html', locals())
+
+def jingdong(request):
+    jingdong_list = Jingdong.objects.all().order_by('productname')  
+    totalNum = 0
+    for i in jingdong_list:
+    
+        totalNum += 1
+    #jingdong_list,thisPage1,thisPage2,thisPage3,thisPage4,thisPage5 = getPage(request, jingdong_list)
+    paginator = Paginator(jingdong_list, 25) # 每页显示25条
+
+    page = request.GET.get('page')
+    try:
+        jingdong_list = paginator.page(page)
+    except PageNotAnInteger:
+        # 如果请求的页数不是整数，返回第一页。
+        jingdong_list = paginator.page(1)
+    except EmptyPage:
+        # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
+        jingdong_list = paginator.page(paginator.num_pages)
+    return render(request, 'jingdong.html', locals())
+
+
+
+def ouwang(request):
+    jingdong_list = Ouwang.objects.all().order_by('title')  
+    totalNum = 0
+    for i in jingdong_list:
+    
+        totalNum += 1
+    #jingdong_list,thisPage1,thisPage2,thisPage3,thisPage4,thisPage5 = getPage(request, jingdong_list)
+    paginator = Paginator(jingdong_list, 25) # 每页显示25条
+
+    page = request.GET.get('page')
+    try:
+        jingdong_list = paginator.page(page)
+    except PageNotAnInteger:
+        # 如果请求的页数不是整数，返回第一页。
+        jingdong_list = paginator.page(1)
+    except EmptyPage:
+        # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
+        jingdong_list = paginator.page(paginator.num_pages)
+    return render(request, 'ouwang.html', locals())
+
+# 分页代码
+def getPage(request, article_list):
+    paginator = Paginator(article_list, 20)
+    try:
+        page = int(request.GET.get('page', 1))
+        thisPage1 = 1
+        thisPage2 = 2
+        thisPage3 = 3
+        thisPage4 = 4
+        thisPage5 = 5
+        if page == 1:
+            thisPage1 = 1 
+            thisPage2 = 2
+            thisPage3 = 3
+            thisPage4 = 4
+            thisPage5 = 5
+        elif page == 2:
+            thisPage1 = 2 
+            thisPage2 = 3
+            thisPage3 = 4
+            thisPage4 = 5
+            thisPage5 = 6
+        else:
+            thisPage1 = page
+            thisPage2 = page+1
+            thisPage3 = page+2
+            thisPage4 = page+3
+            thisPage5 = page+4
+        article_list = paginator.page(page)
+    except (EmptyPage, InvalidPage, PageNotAnInteger):
+        article_list = paginator.page(1)
+    return article_list,thisPage1,thisPage2,thisPage3,thisPage4,thisPage5
 #logger = logging.getLogger('first_app.views')
 
 def global_setting(request):
@@ -298,3 +393,4 @@ def articleAdd(request):
     except Exception as e:
         print(e)
     return render(request, 'articleAdd.html',locals())
+
