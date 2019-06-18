@@ -19,7 +19,7 @@ class Demo():
     def login(self):
         login_url = "https://kyfw.12306.cn/otn/resources/login.html"
         print("启动浏览器，打开12306")
-        webdriverUrl = r'D:\a桌面\课\python\1\chromedriver.exe'
+        webdriverUrl = r'D:\a桌面\myGithub\Django-IT-Education\pythonWeb\education_project\爬虫\login12306\chromedriver.exe'
         driver = webdriver.Chrome(webdriverUrl)
         # driver = webdriver.Chrome()
         driver.set_window_size(1200, 900)
